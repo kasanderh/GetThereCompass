@@ -7,7 +7,7 @@ import com.kasanderh.gettherecompass.databinding.ActivityMainBinding
 import com.kasanderh.gettherecompass.presenter.MainActivityContract
 import com.kasanderh.gettherecompass.presenter.MainActivityPresenter
 
-class MainActivity : AppCompatActivity(), MainActivityContract.view {
+class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
     private val presenter = MainActivityPresenter()
 

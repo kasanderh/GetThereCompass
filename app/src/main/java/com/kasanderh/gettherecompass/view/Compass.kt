@@ -42,6 +42,6 @@ class Compass(private val context: Context): SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("Not yet implemented")
+
     }
 }
