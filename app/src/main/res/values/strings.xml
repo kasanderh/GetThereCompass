@@ -3,4 +3,9 @@
     <string name="distance_to_destination">Distance to destination:</string>
     <string name="compass">Compass</string>
     <string name="add_destination">Add Destination</string>
+    <string name="text_input_longitude">Input Longitude</string>
+    <string name="text_input_latitude">Input Latitude</string>
+    <string name="please_enter_coordinates">Please Enter Coordinates</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>

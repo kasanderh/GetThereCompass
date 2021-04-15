@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -31,6 +31,7 @@
     <ImageView
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:paddingEnd="18dp"
         android:id="@+id/image_view_compass"
         android:layout_width="0dp"
         android:layout_height="400dp"
@@ -39,6 +40,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_compass_main" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/image_view_compass"
+        android:src="@drawable/ic_compass_arrow"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_distance_destination"
