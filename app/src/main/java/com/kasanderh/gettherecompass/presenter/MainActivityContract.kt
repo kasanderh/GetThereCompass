@@ -1,14 +1,16 @@
 package com.kasanderh.gettherecompass.presenter
 
+import android.content.Context
 import com.kasanderh.gettherecompass.view.MainActivity
 
-class MainActivityContract {
+abstract class MainActivityContract {
 
     interface View {
 
     }
 
     interface Presenter {
+//        public fun startCoordinateDialog(context: Context)
 
     }
 

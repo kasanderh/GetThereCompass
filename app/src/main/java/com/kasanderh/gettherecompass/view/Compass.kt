@@ -9,7 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 
-class Compass(private val context: Context): SensorEventListener {
+class Compass(context: Context): SensorEventListener {
 
     private var currentDegree = 0f
 
