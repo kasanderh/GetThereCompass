@@ -31,7 +31,11 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
     }
 
     private fun onClickListenerSetup() {
-        TODO("Not yet implemented")
+        //onclick for "SET DESTINATION"
+
+        //onclick for "CANCEL"
+        //onclick for "OK"
+
     }
 
 
