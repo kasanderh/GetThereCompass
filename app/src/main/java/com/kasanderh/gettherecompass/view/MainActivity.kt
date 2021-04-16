@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import com.kasanderh.gettherecompass.R
 import com.kasanderh.gettherecompass.databinding.ActivityMainBinding
 import com.kasanderh.gettherecompass.databinding.DialogInputCoordinatesBinding
@@ -32,6 +34,14 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
         compass = Compass(this)
         startCompass()
+
+        showLocation()
+
+    }
+
+    private fun showLocation() {
+        var userLocation = presenter.getLocation(this)
+        Toast.makeText(this, "Your location is: $userLocation", Toast.LENGTH_SHORT).show()
     }
 
     private fun startCompass() {
@@ -46,12 +56,26 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
         }
 
+
+
         //onclick for "CANCEL"
         //onclick for "OK"
 
     }
 
-//    private fun startCustomDialog() {
+    override fun requestLocationPermission() {
+        presenter.requestLocationPermission(this)
+    }
+
+    override fun onLocationPermissionGranted() {
+        Toast.makeText(this,getString(R.string.location_permission_granted), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onLocationPermissionDenied() {
+        Toast.makeText(this,getString(R.string.location_permission_denied), Toast.LENGTH_SHORT).show()
+    }
+
+    //    private fun startCustomDialog() {
 //        CoordinateInputDialog(this).show()
 
 //        MainActivityPresenter.startCoordinateDialog(this)

@@ -8,4 +8,6 @@
     <string name="please_enter_coordinates">Please Enter Coordinates</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="location_permission_granted">Location Permission Granted</string>
+    <string name="location_permission_denied">Location Permission Denied, not able to show location</string>
 </resources>
