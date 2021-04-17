@@ -76,9 +76,8 @@
             <ImageView
                 android:id="@+id/image_icon_pin_destination"
                 android:layout_width="40dp"
-
                 android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_pin_drop" />
+                android:src="@drawable/ic_baseline_map" />
 
 
             <TextView
@@ -141,13 +140,13 @@
                 android:text="@string/your_current_location" />
 
             <TextView
+                android:id="@+id/text_view_your_location_coordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/text_view_your_location"
                 android:layout_toRightOf="@id/text_view_your_location"
-                android:text="m"
-                android:textColor="@color/light_blue"
-                tools:text="500m" />
+                android:text=""
+                android:textColor="@color/light_blue" />
 
         </RelativeLayout>
 

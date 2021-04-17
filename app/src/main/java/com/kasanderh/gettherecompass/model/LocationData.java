@@ -26,6 +26,9 @@ public class LocationData {
     private static double inputDirectionLongitude;
 
     public final int REQUEST_RECORD_CODE = 1;
+    public final int ROTATE_COMPASS = 1;
+    public final int ROTATE_ARROW = 2;
+
 
 
     @SuppressLint("MissingPermission")

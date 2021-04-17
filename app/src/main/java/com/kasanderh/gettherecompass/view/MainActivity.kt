@@ -12,16 +12,19 @@ import com.kasanderh.gettherecompass.R
 import com.kasanderh.gettherecompass.databinding.ActivityMainBinding
 import com.kasanderh.gettherecompass.model.CoordinateInputDialog
 import com.kasanderh.gettherecompass.model.GpsLocation
+import com.kasanderh.gettherecompass.model.LocationData
 import com.kasanderh.gettherecompass.presenter.MainActivityContract
 import com.kasanderh.gettherecompass.presenter.MainActivityPresenter
 
-class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation.LocationListener {
+class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation.LocationListener, Compass.SensorListener {
 
     private val presenter = MainActivityPresenter(this)
 
-    private lateinit var compass: Compass
+//    private lateinit var compass: Compass
 
     private lateinit var binding: ActivityMainBinding
+
+    private var locationData: LocationData = LocationData()
 
 //    private lateinit var fragmentManager: FragmentManager
 
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation
 
         onClickListenerSetup()
 
-        compass = Compass(this)
+//        compass = Compass(this)
         startCompass()
         showLocation()
 
@@ -46,7 +49,8 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation
     }
 
     private fun startCompass() {
-        compass.setImageViewCompass(imageViewCompass = binding.imageViewCompass)
+//        compass.setImageViewCompass(imageViewCompass = binding.imageViewCompass)
+
     }
 
     private fun onClickListenerSetup() {
@@ -99,12 +103,23 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation
     }
 
     override fun showArrowRotation(anim: RotateAnimation) {
-        //TODO("Not yet implemented")
+        this.binding.imageViewArrow.startAnimation(anim)
+        // might remove this
     }
 
     override fun onGpsLocationChanged(latitude: String, longitude: String) {
-        this.binding.textViewYourLocation.text = "Your current location is: $latitude, $longitude"
+        this.binding.textViewYourLocationCoordinates.text = "$latitude,$longitude"
     }
+
+    override fun onCompassSensorChanged(updateType: Int, fromPosition: Float, toPosition: Float) {
+        when(updateType) {
+            locationData.ROTATE_COMPASS ->
+                presenter.rotationCompass(fromPosition.toDouble(), toPosition.toDouble())
+            locationData.ROTATE_ARROW ->
+                presenter.rotationArrow(fromPosition.toDouble(), toPosition.toDouble())
+        }
+    }
+
     //    private fun startCustomDialog() {
 //        CoordinateInputDialog(this).show()
 
