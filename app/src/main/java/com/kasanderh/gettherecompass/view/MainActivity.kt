@@ -1,27 +1,29 @@
 package com.kasanderh.gettherecompass.view
 
+import android.content.Context
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.animation.RotateAnimation
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentManager
 import com.kasanderh.gettherecompass.R
 import com.kasanderh.gettherecompass.databinding.ActivityMainBinding
-import com.kasanderh.gettherecompass.databinding.DialogInputCoordinatesBinding
 import com.kasanderh.gettherecompass.model.CoordinateInputDialog
+import com.kasanderh.gettherecompass.model.GpsLocation
 import com.kasanderh.gettherecompass.presenter.MainActivityContract
 import com.kasanderh.gettherecompass.presenter.MainActivityPresenter
 
-class MainActivity : AppCompatActivity(), MainActivityContract.View {
+class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation.LocationListener {
 
-    private val presenter = MainActivityPresenter()
+    private val presenter = MainActivityPresenter(this)
 
     private lateinit var compass: Compass
 
     private lateinit var binding: ActivityMainBinding
+
+//    private lateinit var fragmentManager: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +36,12 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
         compass = Compass(this)
         startCompass()
-
         showLocation()
 
     }
 
     private fun showLocation() {
-        var userLocation = presenter.getLocation(this)
+        var userLocation = presenter.getLocation(binding.imageViewCompass.context)
         Toast.makeText(this, "Your location is: $userLocation", Toast.LENGTH_SHORT).show()
     }
 
@@ -51,11 +52,16 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
     private fun onClickListenerSetup() {
         //onclick for "SET DESTINATION"
         binding.buttonAddDestination.setOnClickListener {
-            CoordinateInputDialog(this).show()
+            presenter.showDialog(this)
+//            CoordinateInputDialog(this, this).show()
 //            startCustomDialog()
 
         }
 
+//    fun closeDialog() {
+//        presenter.closeDialog(this)
+////        CoordinateInputDialog(this, fragmentManager).hide()
+//    }
 
 
         //onclick for "CANCEL"
@@ -75,6 +81,30 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
         Toast.makeText(this,getString(R.string.location_permission_denied), Toast.LENGTH_SHORT).show()
     }
 
+    override fun startGps(coordinatesUser: Array<String>) {
+        val locationManger = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        GpsLocation(this, locationManger)
+    }
+
+    override fun dialogError() {
+        Toast.makeText(this, "Please enter coordinates", Toast.LENGTH_SHORT).show()
+    }
+
+//    fun getView(): Context {
+//        return this
+//    }
+
+    override fun showCompassRotation(anim: RotateAnimation) {
+        this.binding.imageViewCompass.startAnimation(anim)
+    }
+
+    override fun showArrowRotation(anim: RotateAnimation) {
+        //TODO("Not yet implemented")
+    }
+
+    override fun onGpsLocationChanged(latitude: String, longitude: String) {
+        this.binding.textViewYourLocation.text = "Your current location is: $latitude, $longitude"
+    }
     //    private fun startCustomDialog() {
 //        CoordinateInputDialog(this).show()
 

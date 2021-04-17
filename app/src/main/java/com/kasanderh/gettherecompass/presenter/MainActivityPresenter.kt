@@ -2,19 +2,24 @@ package com.kasanderh.gettherecompass.presenter
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.contentValuesOf
 import com.kasanderh.gettherecompass.model.CoordinateInputDialog
 import com.kasanderh.gettherecompass.model.LocationData
 import com.kasanderh.gettherecompass.view.MainActivity
 
-class MainActivityPresenter: MainActivityContract.Presenter {
+class MainActivityPresenter(view: MainActivityContract.View): MainActivityContract.Presenter, CoordinateInputDialog.InputDialogResults{
 
-    lateinit var view: MainActivityContract.View
+    var view: MainActivityContract.View? = view
+    lateinit var inputDialog: CoordinateInputDialog
 
 
     private var locationData: LocationData = LocationData()
@@ -48,7 +53,7 @@ class MainActivityPresenter: MainActivityContract.Presenter {
 
         } else {
             //permission is already granted, ready to start GPS service
-            view.onLocationPermissionGranted()
+            view?.onLocationPermissionGranted()
 
         }
     }
@@ -63,12 +68,52 @@ class MainActivityPresenter: MainActivityContract.Presenter {
                 if((grantResults.isNotEmpty() &&
                             grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     // permission granted
-                    view.onLocationPermissionGranted()
+                    view?.onLocationPermissionGranted()
                 } else {
-                    view.onLocationPermissionDenied()
+                    view?.onLocationPermissionDenied()
                 }
                 return
             }
         }
+    }
+
+
+    override fun onInputDialogConfirmed(latitude: String, longitude: String) {
+        LocationData.setCoordinates(latitude, longitude)
+        inputDialog.hide()
+    }
+
+    override fun onInputDialogCancelled() {
+        inputDialog.hide()
+    }
+
+    override fun showDialog(context: Context) {
+        inputDialog = CoordinateInputDialog(context, this)
+        inputDialog.show()
+    }
+
+    override fun closeDialog(context: Context) {
+        inputDialog = CoordinateInputDialog(context, this)
+        inputDialog.hide()
+    }
+
+    override fun onInputDialogError() {
+        view?.dialogError()
+    }
+
+    override fun rotationCompass(fromPosition: Double, toPosition: Double) {
+        val anim = RotateAnimation(-(fromPosition.toFloat()), -(toPosition.toFloat()), Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        anim.duration = 500
+        anim.repeatCount = 0
+        anim.fillAfter = true
+        view?.showArrowRotation(anim)
+    }
+
+    override fun rotationArrow(fromPosition: Double, toPosition: Double) {
+        val anim = RotateAnimation(-(fromPosition.toFloat()), -(toPosition.toFloat()), Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        anim.duration = 500
+        anim.repeatCount = 0
+        anim.fillAfter = true
+        view?.showArrowRotation(anim)
     }
 }

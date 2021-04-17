@@ -10,4 +10,5 @@
     <string name="ok">OK</string>
     <string name="location_permission_granted">Location Permission Granted</string>
     <string name="location_permission_denied">Location Permission Denied, not able to show location</string>
+    <string name="your_current_location">Your current location is:</string>
 </resources>

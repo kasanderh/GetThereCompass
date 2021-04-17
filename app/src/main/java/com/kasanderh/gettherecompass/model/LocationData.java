@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
@@ -15,10 +16,14 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.jetbrains.annotations.NotNull;
+
 public class LocationData {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private double latitude;
     private double longitude;
+    private static double inputDirectionLatitude;
+    private static double inputDirectionLongitude;
 
     public final int REQUEST_RECORD_CODE = 1;
 
@@ -42,7 +47,11 @@ public class LocationData {
         System.out.println("The longitude is: " + longitude);
         return latitude + "," + longitude;
 
+    }
 
+    public static void setCoordinates(@NotNull String latitude, @NotNull String longitude) {
+        inputDirectionLatitude = Double.parseDouble(latitude);
+        inputDirectionLongitude = Double.parseDouble(longitude);
     }
 }
 

@@ -8,6 +8,7 @@ import android.hardware.SensorManager
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
+import kotlin.math.roundToInt
 
 class Compass(context: Context): SensorEventListener {
 
@@ -26,7 +27,7 @@ class Compass(context: Context): SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        val degree = Math.round(event!!.values[0]).toFloat()
+        val degree = event!!.values[0].roundToInt().toFloat()
 
         // Rotation Animation
 
