@@ -7,36 +7,16 @@
     android:background="@drawable/background_main"
     tools:context=".view.MainActivity">
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="48dp"-->
-<!--        android:layout_marginEnd="48dp"-->
-<!--        app:cardCornerRadius="6dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/image_view_compass"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="8dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/compass"-->
-<!--            android:textSize="24sp" />-->
-
-<!--    </androidx.cardview.widget.CardView>-->
-
-
-     <ImageView
+    <ImageView
         android:id="@+id/image_view_compass"
         android:layout_width="0dp"
         android:layout_height="400dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:paddingEnd="18dp"
         android:background="@drawable/background_compass"
+        android:contentDescription="@string/compass_image"
+        android:paddingStart="0dp"
+        android:paddingEnd="18dp"
         android:src="@drawable/ic_compass_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,15 +24,16 @@
 
 
     <ImageView
-        android:layout_marginTop="24dp"
         android:id="@+id/image_view_arrow"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/destination_arrow"
         android:src="@drawable/ic_compass_arrow"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/image_view_compass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_distance_destination"
@@ -76,6 +57,7 @@
             <ImageView
                 android:id="@+id/image_icon_pin_destination"
                 android:layout_width="40dp"
+                android:contentDescription="@string/map_icon"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_baseline_map" />
 
@@ -85,18 +67,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_toRightOf="@id/image_icon_pin_destination"
+                android:layout_toEndOf="@id/image_icon_pin_destination"
                 android:gravity="center"
                 android:text="@string/distance_to_destination" />
 
             <TextView
+                android:id="@+id/text_view_destination_coordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/text_view_distance_destination"
-                android:layout_toRightOf="@id/text_view_distance_destination"
-                android:text="m"
+                android:layout_toEndOf="@id/text_view_distance_destination"
+                android:text=""
                 android:textColor="@color/light_blue"
-                tools:text="500m" />
+                tools:text="50.123, 12.345" />
 
         </RelativeLayout>
 
@@ -107,7 +90,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        app:layout_goneMarginTop="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
@@ -115,7 +97,8 @@
         app:layout_constraintBottom_toTopOf="@id/button_add_destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view_distance_destination">
+        app:layout_constraintTop_toBottomOf="@id/card_view_distance_destination"
+        app:layout_goneMarginTop="12dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -125,7 +108,7 @@
             <ImageView
                 android:id="@+id/image_icon_pin_location"
                 android:layout_width="40dp"
-
+                android:contentDescription="@string/pin_icon"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_baseline_pin_drop" />
 
@@ -135,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_toRightOf="@id/image_icon_pin_location"
+                android:layout_toEndOf="@id/image_icon_pin_location"
                 android:gravity="center"
                 android:text="@string/your_current_location" />
 
@@ -144,9 +127,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/text_view_your_location"
-                android:layout_toRightOf="@id/text_view_your_location"
-                android:text=""
-                android:textColor="@color/light_blue" />
+                android:layout_toEndOf="@id/text_view_your_location"
+                android:textColor="@color/light_blue"
+                tools:text="59.123, 49.123" />
 
         </RelativeLayout>
 

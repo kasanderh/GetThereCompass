@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Get There Compass</string>
-    <string name="distance_to_destination">Distance to destination:</string>
+    <string name="distance_to_destination">Destination added:</string>
     <string name="compass">Compass</string>
     <string name="add_destination">Add Destination</string>
     <string name="text_input_longitude">Input Longitude</string>
@@ -11,4 +11,8 @@
     <string name="location_permission_granted">Location Permission Granted</string>
     <string name="location_permission_denied">Location Permission Denied, not able to show location</string>
     <string name="your_current_location">Your current location is:</string>
+    <string name="compass_image">Compass Image</string>
+    <string name="destination_arrow">Destination Arrow</string>
+    <string name="map_icon">Map icon</string>
+    <string name="pin_icon">Pin Icon</string>
 </resources>

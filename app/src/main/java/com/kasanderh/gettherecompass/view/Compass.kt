@@ -8,12 +8,12 @@ import android.hardware.SensorManager
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
-import com.kasanderh.gettherecompass.model.LocationData
+import com.kasanderh.gettherecompass.model.DataLocation
 import kotlin.math.roundToInt
 
 class Compass(private val listener: SensorListener, sensorManager: SensorManager): SensorEventListener {
 
-    var locationData: LocationData = LocationData()
+//    var locationData: LocationData = LocationData()
     private val gravity: FloatArray = FloatArray(3)
     private val geomagnetic: FloatArray = FloatArray(3)
     private val alpha = 0.97f
@@ -58,8 +58,8 @@ class Compass(private val listener: SensorListener, sensorManager: SensorManager
             SensorManager.getOrientation(R, orientation)
             currentCompassPosition = Math.toDegrees(orientation[0].toDouble()).toFloat()
             currentCompassPosition = (currentCompassPosition + 360) % 360
-            listener.onCompassSensorChanged(locationData.ROTATE_COMPASS, currentCompassPosition, lastCompassPosition)
-
+            listener.onCompassSensorChanged(DataLocation.ROTATE_COMPASS, currentCompassPosition, lastCompassPosition)
+            lastCompassPosition = currentCompassPosition
         }
     }
 

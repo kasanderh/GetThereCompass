@@ -5,6 +5,8 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class GpsLocation(private val listener: LocationListener, private val locationManager: LocationManager): LocationListener {
 
@@ -21,7 +23,7 @@ class GpsLocation(private val listener: LocationListener, private val locationMa
 
     override fun onLocationChanged(location: Location?) {
         val latitude = location!!.latitude.toString()
-        val longitude = location!!.longitude.toString()
+        val longitude = location.longitude.toString()
         listener.onGpsLocationChanged(latitude, longitude)
     }
 
@@ -31,14 +33,14 @@ class GpsLocation(private val listener: LocationListener, private val locationMa
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-       // TODO("Not yet implemented")
+       // ("Not yet implemented")
     }
 
     override fun onProviderEnabled(provider: String?) {
-        //TODO("Not yet implemented")
+        //("Not yet implemented")
     }
 
     override fun onProviderDisabled(provider: String?) {
-        //TODO("Not yet implemented")
+        //("Not yet implemented")
     }
 }

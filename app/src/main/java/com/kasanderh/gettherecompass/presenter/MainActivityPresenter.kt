@@ -13,7 +13,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.contentValuesOf
 import com.kasanderh.gettherecompass.model.CoordinateInputDialog
-import com.kasanderh.gettherecompass.model.LocationData
+import com.kasanderh.gettherecompass.model.DataLocation
+import com.kasanderh.gettherecompass.model.GpsLocation
 import com.kasanderh.gettherecompass.view.MainActivity
 
 class MainActivityPresenter(view: MainActivityContract.View): MainActivityContract.Presenter, CoordinateInputDialog.InputDialogResults{
@@ -22,14 +23,15 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
     lateinit var inputDialog: CoordinateInputDialog
 
 
-    private var locationData: LocationData = LocationData()
+//    private var locationData: LocationData = LocationData()
 
 
     //    override fun startCoordinateDialog(context: Context) {
 //        CoordinateInputDialog(context).show()
 //    }
     override fun getLocation(context: Context) {
-        locationData.getLocation(context)
+//        locationData.getLocation(context)
+
     }
 
     override fun requestLocationPermission(activity: Activity) {
@@ -41,7 +43,7 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
         if(fineLocation != PackageManager.PERMISSION_GRANTED || coarseLocation != PackageManager.PERMISSION_GRANTED) {
 
             //permission not granted
-            ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), locationData.REQUEST_RECORD_CODE)
+            ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), DataLocation.REQUEST_RECORD_CODE)
 
 
 //            if(ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -64,22 +66,36 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
         grantResults: IntArray
     ) {
         when(requestCode) {
-            locationData.REQUEST_RECORD_CODE -> {
-                if((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // permission granted
-                    view?.onLocationPermissionGranted()
+            DataLocation.REQUEST_RECORD_CODE -> {
+                if(grantResults[0] != PackageManager.PERMISSION_GRANTED || grantResults[1] != PackageManager.PERMISSION_GRANTED) {
+                    //ERROR, view.onLocationError()
                 } else {
-                    view?.onLocationPermissionDenied()
+                    // granted
+                    view?.startGps()
                 }
-                return
             }
+
+//            DataLocation.REQUEST_RECORD_CODE -> {
+//                if((grantResults.isNotEmpty() &&
+//                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//                    // permission granted
+//                    view?.onLocationPermissionGranted()
+//                    view?.startGps()
+//                } else {
+//                    view?.onLocationPermissionDenied()
+//                }
+//                return
+//            }
         }
     }
 
 
     override fun onInputDialogConfirmed(latitude: String, longitude: String) {
-        LocationData.setCoordinates(latitude, longitude)
+        DataLocation.inputLatitude = latitude.toFloat()
+        DataLocation.inputLongitude = longitude.toFloat()
+//        LocationData.setCoordinates(latitude, longitude)
+        view?.onDestinationChanged(latitude,longitude)
+//        view?.onGpsLocationChanged(latitude, longitude)
         inputDialog.hide()
     }
 
@@ -106,7 +122,7 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
         anim.duration = 500
         anim.repeatCount = 0
         anim.fillAfter = true
-        view?.showArrowRotation(anim)
+        view?.showCompassRotation(anim)
     }
 
     override fun rotationArrow(fromPosition: Double, toPosition: Double) {
@@ -115,5 +131,11 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
         anim.repeatCount = 0
         anim.fillAfter = true
         view?.showArrowRotation(anim)
+    }
+
+    override fun locationChanged(latitude: String, longitude: String) {
+        DataLocation.currentLatitude = latitude.toFloat()
+        DataLocation.currentLongitude = longitude.toFloat()
+//        view?.onGpsLocationChanged(latitude, longitude)
     }
 }
