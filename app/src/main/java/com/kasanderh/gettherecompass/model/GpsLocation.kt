@@ -8,7 +8,10 @@ import android.os.Bundle
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-class GpsLocation(private val listener: LocationListener, private val locationManager: LocationManager): LocationListener {
+class GpsLocation(
+    private val listener: LocationListener,
+    private val locationManager: LocationManager
+) : LocationListener {
 
     init {
         initializeLocalization()
@@ -17,9 +20,10 @@ class GpsLocation(private val listener: LocationListener, private val locationMa
 
     @SuppressLint("MissingPermission")
     private fun initializeLocalization() {
-        val location: Location? = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        val location: Location? =
+            locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, this)
-        if(location != null) {
+        if (location != null) {
             onLocationChanged(location)
         } else {
 
@@ -39,7 +43,7 @@ class GpsLocation(private val listener: LocationListener, private val locationMa
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-       // ("Not yet implemented")
+        // ("Not yet implemented")
     }
 
     override fun onProviderEnabled(provider: String?) {

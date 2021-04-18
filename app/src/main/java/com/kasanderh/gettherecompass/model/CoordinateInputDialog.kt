@@ -59,7 +59,6 @@ class CoordinateInputDialog(context: Context, private val returnResults: InputDi
         }
 
         bindingDialog.buttonCancel.setOnClickListener {
-            //close dialog
             returnResults.onInputDialogCancelled()
         }
     }
@@ -69,7 +68,5 @@ class CoordinateInputDialog(context: Context, private val returnResults: InputDi
         fun onInputDialogConfirmed(latitude: String, longitude: String)
         fun onInputDialogCancelled()
         fun onInputDialogError()
-
-
     }
 }

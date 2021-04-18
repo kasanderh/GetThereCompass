@@ -13,7 +13,6 @@ import kotlin.math.roundToInt
 
 class Compass(private val listener: SensorListener, sensorManager: SensorManager): SensorEventListener {
 
-//    var locationData: LocationData = LocationData()
     private val gravity: FloatArray = FloatArray(3)
     private val geomagnetic: FloatArray = FloatArray(3)
     private val alpha = 0.97f
@@ -23,7 +22,6 @@ class Compass(private val listener: SensorListener, sensorManager: SensorManager
     init {
         sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME)
         sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD), SensorManager.SENSOR_DELAY_GAME)
-
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
@@ -68,37 +66,4 @@ class Compass(private val listener: SensorListener, sensorManager: SensorManager
 
     }
 
-    //    private var currentDegree = 0f
-//
-//    private var mySensorManager: SensorManager? = null
-//
-//    private var imageViewCompass: ImageView? = null
-//
-//    init {
-//        mySensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-//    }
-//
-//    fun setImageViewCompass (imageViewCompass: ImageView?) {
-//        this.imageViewCompass = imageViewCompass
-//    }
-//
-//    override fun onSensorChanged(event: SensorEvent?) {
-//        val degree = event!!.values[0].roundToInt().toFloat()
-//
-//        // Rotation Animation
-//
-//        val rotationAnimation = RotateAnimation(currentDegree, -degree, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-//
-//        rotationAnimation.duration = 210
-//
-//        rotationAnimation.fillAfter = true
-//
-//        imageViewCompass!!.startAnimation(rotationAnimation)
-//        currentDegree = -degree
-//
-//    }
-//
-//    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-//
-//    }
 }
