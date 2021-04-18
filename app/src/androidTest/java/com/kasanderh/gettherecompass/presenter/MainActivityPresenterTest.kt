@@ -43,44 +43,4 @@ class MainActivityPresenterTest {
         )
     }
 
-
-
-//    @Test
-//    fun closeDialog() {
-//    }
-//
-//    @Test
-//    fun requestLocationPermission() {
-//    }
-//
-//    @Test
-//    fun onPermissionResult() {
-//    }
-//
-//    @Test
-//    fun onInputDialogConfirmed() {
-//
-//    }
-//
-//    @Test
-//    fun onInputDialogCancelled() {
-//    }
-//
-//
-//    @Test
-//    fun onInputDialogError() {
-//    }
-//
-//    @Test
-//    fun rotationCompass() {
-//    }
-//
-//    @Test
-//    fun rotationArrow() {
-//    }
-//
-//    @Test
-//    fun locationChanged_notNull() {
-//
-//    }
 }
