@@ -8,7 +8,7 @@ The Compass application is a simple app where you can navigate with the help of 
 
 # Screenshots
 
-[<img src="/app/readme/Screenshot.PNG" align="left" width="200">](/app/readme/Screenshot.PNG)
+[<img src="/Screenshot.PNG" align="left" width="200">](/Screenshot.PNG)
 [<img src="/app/src/main/res/readme/Screenshot%20Menu.PNG" align="left" width="200">](/app/src/main/res/readme/Screenshot%20Menu.PNG)
 [<img src="/app/src/main/res/readme/Screenshot%20v60.PNG" align="center" width="200">](/app/src/main/res/readme/Screenshot%20v60.PNG)
 
