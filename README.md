@@ -8,8 +8,8 @@ The Compass application is a simple app where you can navigate with the help of 
 
 # Screenshots
 
-
-<img src="https://raw.githubusercontent.com/kasanderh/GetThereCompass/master/Screenshot.png?token=AN346H2WGRJZR33GHNTIAJLAPRKDW" align="center" width="200">
+[<img src="/master/Screenshot.png" align="left" width="200">](/master/Screenshot.png)
+[<img src="https://raw.githubusercontent.com/kasanderh/GetThereCompass/master/Screenshot.png?token=AN346H2WGRJZR33GHNTIAJLAPRKDW" align="center" width="200">]()
 
 
 # Permissions
