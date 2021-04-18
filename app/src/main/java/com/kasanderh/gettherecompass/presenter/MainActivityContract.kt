@@ -21,13 +21,14 @@ abstract class MainActivityContract {
         fun onGpsLocationChanged(latitude: String, longitude: String)
         fun onDestinationChanged(latitude: String, longitude: String)
         fun onPermissionResult(requestCode: Int,permissions: Array<String>, grantResults: IntArray)
+//        fun getActivity(): Activity
 
 
     }
 
     interface Presenter {
         //        public fun startCoordinateDialog(context: Context)
-        fun getLocation(context: Context)
+//        fun getLocation(context: Context)
         fun requestLocationPermission(activity: Activity)
         fun onPermissionResult(
             requestCode: Int,

@@ -29,10 +29,11 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
     //    override fun startCoordinateDialog(context: Context) {
 //        CoordinateInputDialog(context).show()
 //    }
-    override fun getLocation(context: Context) {
-//        locationData.getLocation(context)
+//    override fun getLocation(context: Context) {
+////        locationData.getLocation(context)
+//
+//    }
 
-    }
 
     override fun requestLocationPermission(activity: Activity) {
 //        ActivityCompat.requestPermissions(activity)
@@ -56,6 +57,8 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
         } else {
             //permission is already granted, ready to start GPS service
             view?.onLocationPermissionGranted()
+            view?.startGps()
+
 
         }
     }
@@ -134,8 +137,8 @@ class MainActivityPresenter(view: MainActivityContract.View): MainActivityContra
     }
 
     override fun locationChanged(latitude: String, longitude: String) {
-        DataLocation.currentLatitude = latitude.toFloat()
-        DataLocation.currentLongitude = longitude.toFloat()
+        DataLocation.currentLatitude = latitude.format("###.####").toFloat()
+        DataLocation.currentLongitude = longitude.format("###.####").toFloat()
 //        view?.onGpsLocationChanged(latitude, longitude)
     }
 }

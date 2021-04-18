@@ -14,11 +14,16 @@ class GpsLocation(private val listener: LocationListener, private val locationMa
         initializeLocalization()
     }
 
+
     @SuppressLint("MissingPermission")
     private fun initializeLocalization() {
-        val location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0f, this)
-        onLocationChanged(location)
+        val location: Location? = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, this)
+        if(location != null) {
+            onLocationChanged(location)
+        } else {
+
+        }
     }
 
     override fun onLocationChanged(location: Location?) {
@@ -30,6 +35,7 @@ class GpsLocation(private val listener: LocationListener, private val locationMa
 
     interface LocationListener {
         fun onGpsLocationChanged(latitude: String, longitude: String)
+        fun onGpsLocationError()
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {

@@ -8,7 +8,8 @@ import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 import com.kasanderh.gettherecompass.databinding.DialogInputCoordinatesBinding
 
-class CoordinateInputDialog(context: Context, private val returnResults: InputDialogResults,) : Dialog(context) {
+class CoordinateInputDialog(context: Context, private val returnResults: InputDialogResults) :
+    Dialog(context) {
 
     private lateinit var bindingDialog: DialogInputCoordinatesBinding
     private lateinit var latitude: TextInputEditText
@@ -45,16 +46,16 @@ class CoordinateInputDialog(context: Context, private val returnResults: InputDi
     private fun setupOnClickListeners() {
 
         bindingDialog.buttonOk.setOnClickListener {
-            if(bindingDialog.inputLongitude.text.toString().isNotEmpty() && bindingDialog.inputLatitude.text.toString()
-                    .isNotEmpty()) {
+            if (bindingDialog.inputLongitude.text.toString()
+                    .isNotEmpty() && bindingDialog.inputLatitude.text.toString()
+                    .isNotEmpty()
+            ) {
                 longitudeInput = bindingDialog.inputLongitude.text.toString()
                 latitudeInput = bindingDialog.inputLatitude.text.toString()
                 returnResults.onInputDialogConfirmed(latitudeInput, longitudeInput)
             } else {
                 returnResults.onInputDialogError()
             }
-
-
         }
 
         bindingDialog.buttonCancel.setOnClickListener {
@@ -71,6 +72,4 @@ class CoordinateInputDialog(context: Context, private val returnResults: InputDi
 
 
     }
-
-
 }

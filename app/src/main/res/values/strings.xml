@@ -15,4 +15,5 @@
     <string name="destination_arrow">Destination Arrow</string>
     <string name="map_icon">Map icon</string>
     <string name="pin_icon">Pin Icon</string>
+    <string name="error">Error</string>
 </resources>

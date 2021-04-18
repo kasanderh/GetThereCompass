@@ -1,5 +1,6 @@
 package com.kasanderh.gettherecompass.view
 
+import android.app.Activity
 import android.content.Context
 import android.hardware.SensorManager
 import android.location.LocationManager
@@ -128,7 +129,8 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation
     }
 
     override fun onGpsLocationChanged(latitude: String, longitude: String) {
-        this.binding.textViewYourLocationCoordinates.text = "$latitude, $longitude"
+        this.binding.textViewYourLocationCoordinates.text = "$latitude., $longitude"
+//        Toast.makeText(this, "Your location is " + latitude + longitude, Toast.LENGTH_LONG).show()
         presenter.locationChanged(latitude, longitude)
     }
 
@@ -149,6 +151,15 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, GpsLocation
         this.binding.textViewDestinationCoordinates.text = "$latitude, $longitude"
     }
 
+    override fun onGpsLocationError() {
+        Toast.makeText(this, "There was an error retrieving the location.", Toast.LENGTH_LONG).show()
+        this.binding.textViewYourLocationCoordinates.text = getString(R.string.error)
+
+    }
+
+    //    override fun getActivity(): Activity {
+//        return this
+//    }
 
     //    private fun startCustomDialog() {
 //        CoordinateInputDialog(this).show()
