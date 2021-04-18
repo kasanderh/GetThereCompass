@@ -13,10 +13,10 @@ The Compass application is a simple app where you can navigate with the help of 
 
 
 # Permissions
-Location are needed to use the application.
+Location is needed to use the application.
 
 # Build Status
 Application is done, but missing functionality to navigate towards a set destination.
 
 # Code style
-Coded with Kotlin in Android Studios.
+Coded with Kotlin in Android Studio.
